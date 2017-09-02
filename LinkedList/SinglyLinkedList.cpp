@@ -80,6 +80,65 @@ prev->next=temp;
 free(loc);
 }
 
+void reverseList(Node *start){
+Node *prev=NULL,*current,*nex;
+current=start;
+while(nex!=NULL){
+    nex=current->next;
+    current->next=prev;
+    prev=current;
+    current=nex;
+}
+start=prev;
+Node *loc;
+loc=start;
+cout<<"Resulted List: "<<endl;
+while(loc!=NULL){
+    cout<<loc->data<<"->";
+    loc=loc->next;
+}
+}
+
+//Merge two sorted list in single sorted list
+void mergeList(Node *startA,Node *startB){
+Node *p,*q,*s;
+p=startA;
+q=startB;
+if(p==NULL){
+   cout<<"No startA";
+}
+if(q==NULL){
+   cout<<"No startB";
+}
+if(p && q){
+    if(p->data<=q->data){
+        s=p;
+        p=s->next;
+    }
+    else{
+        s=q;
+        q=s->next;
+    }
+}
+while(p && q){
+    if(p->data<=q->data){
+        s->next=p;
+        s=p;
+        p=s->next;
+    }
+    else{
+        s->next=q;
+        s=q;
+        q=s->next;
+    }
+}
+if(p==NULL){
+    s->next=q;
+}
+if(q==NULL){
+  s->next=p;
+}
+}
 
 int main() {
 Node *start;
@@ -93,5 +152,7 @@ display(start);
 cout<<"\nAfter deletion: ";
 deleteAtPos(start,2);
 display(start);
+cout<<"\nAfter reversing";
+reverseList(start);
 return 0;
 }
