@@ -25,6 +25,26 @@ void printPreOrder(Node* root){
     printPreOrder(root->right);
 }
 
+//InOrder LNR(Left,Node,Right)
+void printInOrder(Node* root){
+    if(root==NULL){
+        return;
+    }
+    printInOrder(root->left);
+    cout<<root->data<<" ";
+    printInOrder(root->right);
+}
+
+//Post Order is LRN(Left,Right,Node)
+void printPostOrder(Node* root){
+    if(root==NULL){
+        return;
+    }
+    printPostOrder(root->left);
+    printPostOrder(root->right);
+    cout<<root->data<<" ";
+}
+
 int main(){
 Node* root=newNode(1);
 root->left=newNode(2);
@@ -33,5 +53,9 @@ root->left->left=newNode(4);
 root->left->right=newNode(5);
 cout<<"Preorder: ";
 printPreOrder(root);
+cout<<endl<<"Inorder: ";
+printInOrder(root);
+cout<<endl<<"PostOrder: ";
+printPostOrder(root);
 return 0;
 }
