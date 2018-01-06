@@ -45,6 +45,22 @@ void printPostOrder(Node* root){
     cout<<root->data<<" ";
 }
 
+int height(Node* root){
+    if(root==NULL){
+        return -1;
+    }
+    else{
+        int ldepth=height(root->left);
+        int rdepth=height(root->right);
+        if(ldepth>rdepth){
+            return ldepth+1;
+        }
+        else{
+            return rdepth+1;
+        }
+    }
+}
+
 int main(){
 Node* root=newNode(1);
 root->left=newNode(2);
@@ -57,5 +73,7 @@ cout<<endl<<"Inorder: ";
 printInOrder(root);
 cout<<endl<<"PostOrder: ";
 printPostOrder(root);
+int heightTree=height(root);
+cout<<endl<<"Height of the tree: "<<heightTree;
 return 0;
 }
